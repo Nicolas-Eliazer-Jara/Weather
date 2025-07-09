@@ -1,36 +1,69 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🌦️ Weather App
 
-## Getting Started
+Aplicación del clima desarrollada con **Next.js**, **TypeScript**, **TailwindCSS** y consumo en tiempo real de la **OpenWeather API**. Incluye pronóstico extendido, ubicación en mapa y fondo dinámico día/noche.
 
-First, run the development server:
+---
+
+## 🚀 Tecnologías utilizadas
+
+- [Next.js](https://nextjs.org/) – Framework React con routing, SSR y optimización.
+- [React](https://reactjs.org/) – Librería base para componentes UI.
+- [TypeScript](https://www.typescriptlang.org/) – Tipado estático robusto.
+- [Tailwind CSS](https://tailwindcss.com/) – Utilidades CSS modernas y flexibles.
+- [OpenWeatherMap API](https://openweathermap.org/api) – Datos del clima actual y pronóstico.
+- [Leaflet](https://leafletjs.com/) + [React Leaflet](https://react-leaflet.js.org/) – Mapa interactivo con marcador.
+- Íconos animados SVG personalizados – Visualización moderna del estado climático.
+
+---
+
+## 📸 Vista previa
+
+![Vista previa](./public/demo-weather.gif)
+
+---
+
+## 📦 Funcionalidades
+
+- 🔍 Buscar clima por ciudad (incluso nombres compuestos).
+- 📍 Visualizar ubicación en un mapa con coordenadas reales.
+- 🌡 Clima actual:
+  - Temperatura, humedad, descripción y sensación térmica.
+  - Íconos animados personalizados.
+- 📅 Pronóstico de 5 días (a las 12:00 hs cada día).
+- 🌓 Cambio de fondo automático según la hora (día o noche).
+- 🎨 Interfaz moderna y 100% responsive.
+
+---
+
+## 🛠️ Instalación
+
+1. Cloná el repositorio:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+git clone https://github.com/Nicolas-Eliazer-Jara/Weather.git
+cd weather
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 📁 Estructura del proyecto
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+├── app
+│   ├── component
+│   │   ├── ForecastCard.tsx
+│   │   ├── SearchBar.tsx
+│   │   ├── WeatherCard.tsx
+│   │   └── WeatherMap.tsx
+│   ├── favicon.ico
+│   ├── globals.css
+│   ├── layout.tsx
+│   ├── page.tsx
+│   ├── services
+│   │   └── weatherService.ts
+│   └── types
+│       └── weather.d.ts
+├── .env.local
+├── public
+│   ├── fondo.png
+│   ├── icons
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🙌 Autor
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Hecho con 💻 por Nicolás Eliazer Jara – 2025
