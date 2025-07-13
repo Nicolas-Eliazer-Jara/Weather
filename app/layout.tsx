@@ -15,7 +15,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="mt-10 mb-10">
+      <body className="mt-10 mb-10 bg-[#ABC8A2]">
         {children}
       </body>
     </html>

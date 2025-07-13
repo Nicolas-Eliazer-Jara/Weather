@@ -18,7 +18,7 @@ Aplicación del clima desarrollada con **Next.js**, **TypeScript**, **TailwindCS
 
 ## 📸 Vista previa
 
-![Vista previa](./public/demo-weather.gif)
+![Vista previa](./public/preview.png)
 
 ---
 

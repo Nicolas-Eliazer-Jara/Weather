@@ -1,30 +1,21 @@
 "use client";
 import { useEffect, useState } from "react";
 import { fetchForecast } from "../services/weatherService";
+import { iconMap } from "../utils/iconMaps"
+import Image from "next/image";
 
-interface ForecastCardProps {
-  city: string;
-}
 
-interface ForecastItem {
-  dt_txt: string;
-  main: { temp: number };
-  weather: { description: string; icon: string }[];
-}
+
 
 export default function ForecastCard({ city }: ForecastCardProps) {
-  const [isNight, setIsNight] = useState(false);
   const [forecast, setForecast] = useState<ForecastItem[]>([]);
 
-  useEffect(() => {
-    const hour = new Date().getHours();
-    setIsNight(hour >= 20 || hour < 6); // noche entre 20hs y 6hs
-  }, []);
-
+  // Obtener datos del pronóstico al cambiar la ciudad
   useEffect(() => {
     if (!city) return;
     fetchForecast(city).then((data) => {
-      const filtered = data.list.filter((item: ForecastItem) =>
+      if (!data?.list) return;
+      const filtered: ForecastItem[] = data.list.filter((item: ForecastItem) =>
         item.dt_txt.includes("12:00:00")
       );
       setForecast(filtered);
@@ -33,57 +24,37 @@ export default function ForecastCard({ city }: ForecastCardProps) {
 
   if (!forecast.length) return null;
 
-  // 🟡 Mapa de íconos animados personalizados
-  const iconMap: Record<string, string> = {
-    "01d": "day.svg",
-    "01n": "night.svg",
-    "02d": "cloudy-day-1.svg",
-    "02n": "cloudy-night-1.svg",
-    "03d": "cloudy.svg",
-    "03n": "cloudy.svg",
-    "04d": "cloudy.svg",
-    "04n": "cloudy.svg",
-    "09d": "rainy-1.svg",
-    "09n": "rainy-1.svg",
-    "10d": "rainy-3.svg",
-    "10n": "rainy-3.svg",
-    "11d": "thunder.svg",
-    "11n": "thunder.svg",
-    "13d": "snowy-3.svg",
-    "13n": "snowy-3.svg",
-    "50d": "fog.svg",
-    "50n": "fog.svg",
-  };
 
   return (
-    <div className="bg-[#faf2e6] h-full rounded-2xl shadow-inner shadow-gray-300 "> 
-      <h3 className="mb-10 pt-2 text-lg  text-black text-center font-semibold">
-        Próximos días
+    <div className=" bg-[#e6e9ee] rounded-2xl shadow-[inset_3px_3px_5px_rgba(181,191,198,0.9)] p-6 mx-6 h-[100%] ">
+      <h3 className="text-lg font-semibold mb-4 text-center">
+        Forecast for the next five days
       </h3>
-      <div className="flex gap-27 w-full overflow-x-auto pl-4 ">
+      <div className="lg:flex grid grid-cols-2  lg:gap-19 lg:overflow-x-auto  ">
         {forecast.map((item, i) => (
           <div
             key={i}
-            className={`${
-              isNight ? "bg-[#30312e] text-[#faf2e6]" : "bg-[#faf2e6] text-[#30312e] "
-            } rounded-2xl p-3  min-w-[120px] text-center shadow-inner shadow-gray-300`}
+            className=" rounded-2xl p-4 mb-4 mx-2 min-w-[140px]  text-center shadow-md bg-[#EFF2F9]"
           >
-            <p className="text-sm">
+            <p className="text-sm font-medium">
               {new Date(item.dt_txt).toLocaleDateString("es-AR", {
                 weekday: "short",
                 day: "numeric",
               })}
             </p>
 
-            {/* ✅ Ícono animado personalizado */}
-            <img
+            <Image
               src={`/icons/${iconMap[item.weather[0].icon] || "day.svg"}`}
               alt={item.weather[0].description}
-              className="w-30 h-25 mx-auto object-cover"
+              className="mx-auto w-16 h-16 my-2"
+              width={900}
+              height={900}
             />
 
-            <p className="text-sm">{item.weather[0].description}</p>
+            <p className="text-sm capitalize">{item.weather[0].description}</p>
             <p className="font-bold">{item.main.temp.toFixed(1)}°C</p>
+            <p className="text-xs">Humedad: {item.main.humidity}%</p>
+            <p className="text-xs">Nubes: {item.clouds.all}%</p>
           </div>
         ))}
       </div>

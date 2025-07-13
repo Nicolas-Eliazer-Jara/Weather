@@ -1,4 +1,4 @@
-// app/services/weatherService.ts
+
 
 export async function fetchWeather(city: string) {
   const res = await fetch(

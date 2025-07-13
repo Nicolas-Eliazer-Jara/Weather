@@ -21,20 +21,20 @@ export default function Home() {
   };
 
   return (
-    <div className=" w-[95%] min-h-screen bg-[#faf2e6] mx-auto rounded-2xl pt-10 pb-10 shadow-2xl">
-      <div className=" w-[95%] h-full relative  text-[#30312e] mx-auto p-4 ">
-        <div className="bg-[#faf2e6] h-[80px] ">
+    <div className=" w-[95%]  bg-[#EFF2F9] mx-auto rounded-2xl pt-10 pb-4 shadow-2xl">
+      <div className=" w-[95%] h-full relative  text-[#6E7F8D] mx-auto p-4 ">
+        <div className="bg-[#EFF2F9] h-[80px] ">
           <SearchBar onSearch={handleSearch} />
         </div>
 
         <div className="">
           {weather && (
             <div className="flex gap-4 flex-col md:flex-row">
-              <div className="w-full md:w-1/4">
+              <div className="w-full md:w-2/4">
                 <WeatherCard data={weather} />
               </div>
               {weather.coord && (
-                <div className="w-full h-[100%] md:w-3/4">
+                <div className="w-full  md:w-2/4 px-6 pb-6">
                   <WeatherMap lat={weather.coord.lat} lon={weather.coord.lon} />
                 </div>
               )}
