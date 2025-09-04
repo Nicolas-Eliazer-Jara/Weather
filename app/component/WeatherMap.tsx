@@ -12,12 +12,12 @@ const customIcon = new L.Icon({
 
 export default function WeatherMap({ lat, lon }: { lat: number; lon: number }) {
   return (
-    <div className="flex items-center justify-center shadow-[inset_3px_3px_5px_2px_rgba(181,191,198,1)] w-[100%] h-[320px] sm:h-[308px] rounded-2xl  sm:mt-3  lg:mt-3  ">
+    <div className="flex items-center justify-center w-full h-[320px] lg:h-[350px] rounded-2xl mt-4 bg-white shadow-md p-2">
       <MapContainer
         center={[lat, lon]}
         zoom={10}
         scrollWheelZoom={false}
-        className="h-[92%] w-[97%] rounded-2xl shadow-[inset_3px_3px_5px_rgba(181,191,198,1)] text-[#6E7F8D]"
+        className="h-full w-full rounded-2xl shadow-inner"
       >
         <TileLayer
           attribution="&copy; OpenStreetMap contributors"

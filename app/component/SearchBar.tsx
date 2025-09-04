@@ -1,12 +1,13 @@
 "use client";
-
 import { useState } from "react";
+import { Search } from "lucide-react";
 
 interface SearchBarProps {
   onSearch: (city: string) => void;
 }
 
 export function SearchBar({ onSearch }: SearchBarProps) {
+  
   const [inputVal, setInputVal] = useState<string>("");
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -22,30 +23,29 @@ export function SearchBar({ onSearch }: SearchBarProps) {
       return;
     }
 
-    console.log("Buscando ciudad:", city);
-    onSearch(city); // se envía la ciudad limpia
-    setInputVal(""); // opcional: limpia el input después de buscar
+    onSearch(city);
+    setInputVal("");
   };
 
   return (
-    <div className="bg-[#abc8a23b]  p-2 w-[80%] mx-auto shadow-[inset_+3px_+3px_5px_rgba(181,191,198,0.9)]  rounded-2xl">
-      <form onSubmit={handleSubmit}>
-        <input
-          onChange={handleChange}
-          className="lg:p-1 sm:p-2 text-[#6E7F8D]  w-[80%] bg-transparent outline-none"
-          placeholder="Search for location"
-          type="text"
-          value={inputVal}
-        />
-        <button
-          type="submit"
-          className="p-2 rounded-2xl bg-[#EFF2F9] text-[#6E7F8D] ml-1     min-w-[19%] shadow-[_+3px_+3px_5px_2px_rgba(181,191,198,10)] active:bg-[#abc8a2] active:text-[#EFF2F9]  active:shadow-[inset_+3px_+3px_5px_rgba(181,191,198,10)] "
-        >
-          Buscar
-        </button>
-      </form>
-
-
-    </div>
+    <form
+      onSubmit={handleSubmit}
+      className="flex items-center justify-center w-[85%] mx-auto mt-4 bg-white/70 backdrop-blur-md shadow-md rounded-2xl px-3 py-2"
+    >
+      <Search className="w-5 h-5 text-gray-400 mr-2" />
+      <input
+        onChange={handleChange}
+        value={inputVal}
+        type="text"
+        placeholder="Buscar ciudad..."
+        className="flex-1 p-2 outline-none text-gray-700 placeholder-gray-400"
+      />
+      <button
+        type="submit"
+        className="px-4 py-2 rounded-xl bg-[#d3b7d5] hover:bg-[#6d2040]  font-semibold hover:text-[#d3b7d5] text-[#6d2040] transition "
+      >
+        Buscar
+      </button>
+    </form>
   );
 }
