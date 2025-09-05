@@ -10,8 +10,10 @@ interface WeatherData {
     wind: { speed: number };
     clouds: { all: number };
     visibility?: number;
+    coord?: { lat: number; lon: number };
+    cod?: number | string;
   }
-  interface ForecastItem {
+ interface ForecastItem {
     dt_txt: string;
     main: {
       temp: number;

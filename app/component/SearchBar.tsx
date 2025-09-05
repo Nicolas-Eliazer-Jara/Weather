@@ -7,7 +7,6 @@ interface SearchBarProps {
 }
 
 export function SearchBar({ onSearch }: SearchBarProps) {
-  
   const [inputVal, setInputVal] = useState<string>("");
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -18,11 +17,7 @@ export function SearchBar({ onSearch }: SearchBarProps) {
     e.preventDefault();
     const city = inputVal.trim();
 
-    if (!city) {
-      alert("Por favor ingrese una ciudad");
-      return;
-    }
-
+    // en vez de alert, pasamos la ciudad vacía al padre
     onSearch(city);
     setInputVal("");
   };

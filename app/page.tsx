@@ -5,10 +5,11 @@ import ForecastCard from "./component/ForecastCard";
 import { SearchBar } from "./component/SearchBar";
 import { WeatherCard } from "./component/WeatherCard";
 import dynamic from "next/dynamic";
+import type { WeatherData } from "./types/weather"
 
 export default function Home() {
   const [city, setCity] = useState<string>("");
-  const [weather, setWeather] = useState<any>(null);
+  const [weather, setWeather] = useState<WeatherData>(null);
   const [error, setError] = useState<string | null>(null);
 
   const WeatherMap = dynamic(() => import("./component/WeatherMap"), {
@@ -17,10 +18,17 @@ export default function Home() {
 
   const handleSearch = async (newCity: string) => {
     setCity(newCity);
-    setError(null); // limpiar error previo
+    setError(null);
+  
+    if (!newCity) {
+      setWeather(null);
+      setError("Por favor ingrese una ciudad"); // mismo estilo de error
+      return;
+    }
+  
     try {
       const data = await fetchWeather(newCity);
-      if (!data || data.cod === "404") { // si la ciudad no existe
+      if (!data || data.cod === "404") {
         setWeather(null);
         setError("Ciudad no encontrada");
         return;
@@ -32,6 +40,7 @@ export default function Home() {
       setError("Ocurrió un error al buscar la ciudad");
     }
   };
+  
 
   return (
     <div>
@@ -66,7 +75,7 @@ export default function Home() {
 {/* Mostrar mensaje de error si hay */}
 {error && (
           <div className="bg-white/30 backdrop-blur-md rounded-2xl border border-white/20 p-6 shadow-lg max-w-sm mx-auto mt-10">
-          <p className="text-white text-center">{error}</p>
+          <p className="text-[#6d2040] text-center">{error}</p>
           </div>
         )}
 

@@ -23,7 +23,7 @@ export default function ForecastCard({ city }: ForecastCardProps) {
   if (!forecast.length) return null;
 
   return (
-    <div className="bg-white rounded-2xl shadow-md p-6 mx-6 mt-4 text-[#6d2040]" >
+    <div className="bg-white/20 rounded-2xl shadow-md p-6 mx-6 mt-4 text-[#6d2040]" >
       <h3 className="text-xl font-semibold mb-4 text-center text-[#6d2040]">
         Pronóstico 5 días
       </h3>
@@ -31,7 +31,7 @@ export default function ForecastCard({ city }: ForecastCardProps) {
         {forecast.map((item, i) => (
           <div
             key={i}
-            className="rounded-2xl p-4 min-w-[140px] text-center bg-[#d3b7d5] shadow hover:shadow-lg transition"
+            className="rounded-2xl p-4 min-w-[140px] text-center bg-white shadow hover:shadow-lg transition"
           >
             <p className="text-sm font-medium text-gray-700">
               {new Date(item.dt_txt).toLocaleDateString("es-AR", {
