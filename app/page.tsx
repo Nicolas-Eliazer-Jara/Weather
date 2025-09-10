@@ -9,7 +9,8 @@ import type { WeatherData } from "./types/weather"
 
 export default function Home() {
   const [city, setCity] = useState<string>("");
-  const [weather, setWeather] = useState<WeatherData>(null);
+  const [weather, setWeather] = useState<WeatherData | null>(null);
+
   const [error, setError] = useState<string | null>(null);
 
   const WeatherMap = dynamic(() => import("./component/WeatherMap"), {
