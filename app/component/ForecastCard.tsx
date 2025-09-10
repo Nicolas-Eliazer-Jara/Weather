@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import { fetchForecast } from "../services/weatherService";
 import { iconMap } from "../utils/iconMaps";
+import type { ForecastItem, ForecastCardProps } from "../types/weather";
 import Image from "next/image";
 
 

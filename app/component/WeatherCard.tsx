@@ -1,6 +1,7 @@
 
 // WeatherCard.tsx
 "use client";
+import type { WeatherData } from "../types/weather";
 import Image from "next/image";
 import { iconMap } from "../utils/iconMaps";
 import { Wind, Droplets, Thermometer, Cloud, Eye, Gauge } from "lucide-react";
